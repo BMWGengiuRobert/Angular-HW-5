@@ -13,11 +13,11 @@
                         <mat-label>First Name*</mat-label>
                         <input matInput formControlName="firstName">
                         @if (settingsForm.get('firstName')?.invalid && settingsForm.get('firstName')?.touched) {
-                            <mat-error>
-                                @if (settingsForm.get('firstName')?.hasError('required')) { Required }
-                                @else if (settingsForm.get('firstName')?.hasError('minlength')) { Min 2 characters }
-                                @else if (settingsForm.get('firstName')?.hasError('maxlength')) { Max 50 characters }
-                            </mat-error>
+                        <mat-error>
+                            @if (settingsForm.get('firstName')?.hasError('required')) { Required }
+                            @else if (settingsForm.get('firstName')?.hasError('minlength')) { Min 2 characters }
+                            @else if (settingsForm.get('firstName')?.hasError('maxlength')) { Max 50 characters }
+                        </mat-error>
                         }
                     </mat-form-field>
 
@@ -25,11 +25,11 @@
                         <mat-label>Last Name*</mat-label>
                         <input matInput formControlName="lastName">
                         @if (settingsForm.get('lastName')?.invalid && settingsForm.get('lastName')?.touched) {
-                            <mat-error>
-                                @if (settingsForm.get('lastName')?.hasError('required')) { Required }
-                                @else if (settingsForm.get('lastName')?.hasError('minlength')) { Min 2 characters }
-                                @else if (settingsForm.get('lastName')?.hasError('maxlength')) { Max 50 characters }
-                            </mat-error>
+                        <mat-error>
+                            @if (settingsForm.get('lastName')?.hasError('required')) { Required }
+                            @else if (settingsForm.get('lastName')?.hasError('minlength')) { Min 2 characters }
+                            @else if (settingsForm.get('lastName')?.hasError('maxlength')) { Max 50 characters }
+                        </mat-error>
                         }
                     </mat-form-field>
                 </div>
@@ -38,10 +38,10 @@
                     <mat-label>Headline*</mat-label>
                     <input matInput formControlName="headline">
                     @if (settingsForm.get('headline')?.invalid && settingsForm.get('headline')?.touched) {
-                        <mat-error>
-                            @if (settingsForm.get('headline')?.hasError('required')) { Required }
-                            @else if (settingsForm.get('headline')?.hasError('maxlength')) { Max 120 characters }
-                        </mat-error>
+                    <mat-error>
+                        @if (settingsForm.get('headline')?.hasError('required')) { Required }
+                        @else if (settingsForm.get('headline')?.hasError('maxlength')) { Max 120 characters }
+                    </mat-error>
                     }
                 </mat-form-field>
 
@@ -49,7 +49,7 @@
                     <mat-label>Profile Image URL</mat-label>
                     <input matInput formControlName="profileImage" placeholder="https://...">
                     @if (settingsForm.get('profileImage')?.invalid && settingsForm.get('profileImage')?.touched) {
-                        <mat-error>Must be a valid URL</mat-error>
+                    <mat-error>Must be a valid URL</mat-error>
                     }
                 </mat-form-field>
 
@@ -63,7 +63,7 @@
                         <mat-label>Location</mat-label>
                         <input matInput formControlName="location">
                         @if (settingsForm.get('location')?.invalid && settingsForm.get('location')?.touched) {
-                            <mat-error>Max 100 characters</mat-error>
+                        <mat-error>Max 100 characters</mat-error>
                         }
                     </mat-form-field>
                 </div>
@@ -80,11 +80,11 @@
                         <mat-label>Email*</mat-label>
                         <input matInput formControlName="email" type="email">
                         @if (settingsForm.get('email')?.invalid && settingsForm.get('email')?.touched) {
-                            <mat-error>
-                                @if (settingsForm.get('email')?.hasError('required')) { Required }
-                                @else if (settingsForm.get('email')?.hasError('email')) { Invalid email address }
-                                @else if (settingsForm.get('email')?.hasError('maxlength')) { Max 100 characters }
-                            </mat-error>
+                        <mat-error>
+                            @if (settingsForm.get('email')?.hasError('required')) { Required }
+                            @else if (settingsForm.get('email')?.hasError('email')) { Invalid email address }
+                            @else if (settingsForm.get('email')?.hasError('maxlength')) { Max 100 characters }
+                        </mat-error>
                         }
                     </mat-form-field>
 
@@ -92,7 +92,7 @@
                         <mat-label>Phone</mat-label>
                         <input matInput formControlName="phone">
                         @if (settingsForm.get('phone')?.invalid && settingsForm.get('phone')?.touched) {
-                            <mat-error>Invalid phone number</mat-error>
+                        <mat-error>Invalid phone number</mat-error>
                         }
                     </mat-form-field>
                 </div>
@@ -101,7 +101,7 @@
                     <mat-label>Website</mat-label>
                     <input matInput formControlName="website" placeholder="https://...">
                     @if (settingsForm.get('website')?.invalid && settingsForm.get('website')?.touched) {
-                        <mat-error>Must be a valid URL</mat-error>
+                    <mat-error>Must be a valid URL</mat-error>
                     }
                 </mat-form-field>
             </mat-card-content>
@@ -116,7 +116,7 @@
                     <mat-label>Tell people about yourself</mat-label>
                     <textarea matInput formControlName="about" rows="4"></textarea>
                     @if (settingsForm.get('about')?.invalid && settingsForm.get('about')?.touched) {
-                        <mat-error>Max 500 characters</mat-error>
+                    <mat-error>Max 500 characters</mat-error>
                     }
                     <mat-hint align="end">
                         {{ settingsForm.get('about')?.value?.length ?? 0 }}/500
@@ -125,15 +125,26 @@
             </mat-card-content>
         </mat-card>
 
-        <button matButton="outlined" type="submit" out class="save-btn" [disabled]="!settingsForm.valid" (click)="onSaveChanges()">Save Changes</button>
+        <div class="form-actions">
+            <button matButton="outlined" type="submit" class="save-btn" [disabled]="!settingsForm.valid"
+                (click)="onSaveChanges()">Save Changes</button>
+
+            @if (settingsForm.invalid && !settingsForm.pristine) {
+            <button mat-icon-button appInfoIcon type="button" class="info-btn">
+                <mat-icon>info</mat-icon>
+            </button>
+            }
+
+            <button mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
+        </div>
 
         @if (saveSuccess) {
-            <p class="save-success">&#10003; Changes saved successfully.</p>
+        <p class="save-success">&#10003; Changes saved successfully.</p>
         }
-        
+
         @if(saveError) {
-            <p class="save-error">&#9888; Error saving changes. Please try again.</p>
+        <p class="save-error">&#9888; Error saving changes. Please try again.</p>
         }
-        
+
     </form>
 </div>

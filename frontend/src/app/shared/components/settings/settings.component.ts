@@ -6,13 +6,16 @@ import { MatInputModule } from '@angular/material/input';
 import { UsersService } from '../../services/users.service';
 import { MatButtonModule } from '@angular/material/button';
 import { User } from '../../models/user.model';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { InfoIconDirective } from '../../directives/info-icon-directive/info-icon.directive';
+import { MatIconModule } from '@angular/material/icon';
 
 const URL_PATTERN = /^(https?:\/\/)[^\s/$.?#].[^\s]*$/;
 const PHONE_PATTERN = /^[+]?[0-9 \-().]{7,20}$/;
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule,MatSnackBarModule,InfoIconDirective,MatIconModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
@@ -82,6 +85,23 @@ export class SettingsComponent implements OnInit {
         console.error('No current user found to update.');
       }
 
+    }
+  }
+
+  onCancel(): void {
+    if (this.currentUser) {
+      this.settingsForm.setValue({
+        firstName: this.currentUser.firstName,
+        lastName: this.currentUser.lastName,
+        headline: this.currentUser.headline,
+        profileImage: this.currentUser.profileImage ?? '',
+        dateOfBirth: this.currentUser.dateOfBirth,
+        location: this.currentUser.location,
+        email: this.currentUser.email,
+        phone: this.currentUser.phone,
+        website: this.currentUser.website,
+        about: this.currentUser.about
+      });
     }
   }
 }
