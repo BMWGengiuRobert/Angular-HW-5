@@ -126,7 +126,7 @@
         </mat-card>
 
         <div class="form-actions">
-            <button matButton="outlined" type="submit" class="save-btn" [disabled]="!settingsForm.valid"
+            <button matButton="outlined" type="submit" class="save-btn" appSaveButton [disabled]="settingsForm.invalid || settingsForm.pristine"
                 (click)="onSaveChanges()">Save Changes</button>
 
             @if (settingsForm.invalid && !settingsForm.pristine) {
@@ -137,11 +137,7 @@
 
             <button mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
         </div>
-
-        @if (saveSuccess) {
-        <p class="save-success">&#10003; Changes saved successfully.</p>
-        }
-
+        
         @if(saveError) {
         <p class="save-error">&#9888; Error saving changes. Please try again.</p>
         }

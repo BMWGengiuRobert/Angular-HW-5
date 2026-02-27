@@ -9,13 +9,14 @@ import { User } from '../../models/user.model';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { InfoIconDirective } from '../../directives/info-icon-directive/info-icon.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { SaveButtonDirective } from '../../directives/save-button-directive/save-button.directive';
 
 const URL_PATTERN = /^(https?:\/\/)[^\s/$.?#].[^\s]*$/;
 const PHONE_PATTERN = /^[+]?[0-9 \-().]{7,20}$/;
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule,MatSnackBarModule,InfoIconDirective,MatIconModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSnackBarModule, InfoIconDirective, MatIconModule, SaveButtonDirective],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
@@ -24,7 +25,6 @@ export class SettingsComponent implements OnInit {
   private readonly userService = inject(UsersService);
 
   public currentUser: User | null = null;
-  public saveSuccess = false;
   public saveError = false;
 
   public settingsForm: FormGroup = this.formBuilder.group({
@@ -54,7 +54,7 @@ export class SettingsComponent implements OnInit {
         website: user.website,
         about: user.about,
       });
-      
+
       this.currentUser = user;
     });
   }
@@ -70,11 +70,6 @@ export class SettingsComponent implements OnInit {
         };
 
         this.userService.updateUser(updatedUser).subscribe({
-          next: updated => {
-            console.log('User updated successfully:', updated);
-            this.saveSuccess = true;
-            setTimeout(() => (this.saveSuccess = false), 4000);
-          },
           error: err => {
             console.error('Error updating user:', err);
             this.saveError = true;
