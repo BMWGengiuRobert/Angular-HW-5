@@ -1,14 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatIcon } from '@angular/material/icon';
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { Router } from '@angular/router';
+
 import { HighlightDirective } from '../../directives/highlight-directive/highlight.directive';
+import { TechIconsDirective } from '../../directives/tech-icons-direcitive/tech-icons.directive';
 
 @Component({
   selector: 'app-network-table',
-  imports: [MatTableModule, AvatarComponent,HighlightDirective],
+  imports: [MatTableModule, MatIcon, AvatarComponent, HighlightDirective, TechIconsDirective],
   templateUrl: './network-table.component.html',
   styleUrl: './network-table.component.scss',
 })
