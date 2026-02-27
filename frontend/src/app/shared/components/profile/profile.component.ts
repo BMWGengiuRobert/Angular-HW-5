@@ -7,7 +7,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
 import { ProfileSectionComponent } from './profile-section/profile-section.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IfCurrentUserDirective } from '../../directives/current-user-directive/if-current-user.directive';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ import { ActivatedRoute } from '@angular/router';
     MatIconModule,
     MatDividerModule,
     ProfileSectionComponent,
+    IfCurrentUserDirective
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -27,6 +29,7 @@ export class ProfileComponent implements OnInit {
 
   private readonly usersService = inject(UsersService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe({
@@ -45,5 +48,9 @@ export class ProfileComponent implements OnInit {
         console.error('Error fetching route parameters:', err);
       }
     });
+  }
+
+  goToSettings() {
+    this.router.navigate(['/settings']);
   }
 }

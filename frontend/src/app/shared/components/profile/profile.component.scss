@@ -30,6 +30,7 @@
     }
 
     .basic-info {
+        flex: 1;
         padding-bottom: 8px;
 
         h2 {
@@ -67,10 +68,15 @@
 
     .contact-strip {
         display: flex;
-        align-items: center;
-        gap: 24px;
+        flex-direction: column;
+        gap: 8px;
         padding-top: 12px;
-        flex-wrap: wrap;
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
 
         .contact-item {
             display: flex;

@@ -3,10 +3,7 @@
 
     <mat-card-content class="header-card__content">
         <div class="header-card__main">
-            <app-avatar
-                class="avatar-large"
-                [firstName]="user?.firstName ?? ''"
-                [lastName]="user?.lastName ?? ''">
+            <app-avatar class="avatar-large" [firstName]="user?.firstName ?? ''" [lastName]="user?.lastName ?? ''">
             </app-avatar>
             <div class="basic-info">
                 <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
@@ -20,21 +17,32 @@
                     <strong>{{ user?.connections }}</strong> connections
                 </div>
             </div>
+
+            <div class="profile-actions">
+                <button matButton="outlined" *appIfCurrentUser="user!.id" (click)="goToSettings()">
+                    <mat-icon>settings</mat-icon>
+                    Settings
+                </button>
+            </div>
         </div>
 
         <mat-divider></mat-divider>
 
         <div class="contact-strip">
-            <div class="contact-item">
-                <mat-icon color="primary">email</mat-icon>
-                <span>{{ user?.email }}</span>
+            <div class="contact-row">
+                <div class="contact-item">
+                    <mat-icon color="primary">email</mat-icon>
+                    <span>{{ user?.email }}</span>
+                </div>
+                <div class="contact-item">
+                    <span>{{ user?.phone }}</span>
+                </div>
             </div>
-            <div class="contact-item">
-                <span>{{ user?.phone }}</span>
-            </div>
-            <div class="contact-item">
-                <mat-icon color="primary">link</mat-icon>
-                <a [href]="user?.website">{{ user?.website }}</a>
+            <div class="contact-row">
+                <div class="contact-item">
+                    <mat-icon color="primary">link</mat-icon>
+                    <a [href]="user?.website">{{ user?.website }}</a>
+                </div>
             </div>
         </div>
 
