@@ -4,10 +4,11 @@ import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { Router } from '@angular/router';
+import { HighlightDirective } from '../../directives/highlight-directive/highlight.directive';
 
 @Component({
   selector: 'app-network-table',
-  imports: [MatTableModule, AvatarComponent],
+  imports: [MatTableModule, AvatarComponent,HighlightDirective],
   templateUrl: './network-table.component.html',
   styleUrl: './network-table.component.scss',
 })

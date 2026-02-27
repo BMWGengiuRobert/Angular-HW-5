@@ -28,6 +28,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row (click)="goToUserProfile(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row (click)="goToUserProfile(row.id)" *matRowDef="let row; columns: displayedColumns;"
+            [appHighlight]="row.headline"></tr>
     </table>
 </div>
