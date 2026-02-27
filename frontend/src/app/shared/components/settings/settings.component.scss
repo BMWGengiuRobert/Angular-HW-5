@@ -1,11 +1,17 @@
+:host {
+    display: block;
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
 .settings-container {
-    padding: 24px 16px;
+    max-width: 600px;
+    margin: 0 auto;
     border: 2px solid rgba(0, 0, 0, 0.12);
     border-radius: 8px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
+    padding: 24px;
 
     h1 {
         font-size: 22px;
