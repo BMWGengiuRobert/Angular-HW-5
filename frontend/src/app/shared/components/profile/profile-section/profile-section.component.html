@@ -42,7 +42,7 @@
         @if (skills?.length) {
         <mat-chip-set>
             @for (skill of skills!; track skill) {
-            <mat-chip>{{ skill }}</mat-chip>
+            <mat-chip appRandomColor>{{ skill }}</mat-chip>
             }
         </mat-chip-set>
         }

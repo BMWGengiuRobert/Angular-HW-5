@@ -19,7 +19,7 @@
             </div>
 
             <div class="profile-actions">
-                <button matButton="outlined" *appIfCurrentUser="user!.id" (click)="goToSettings()">
+                <button matButton="outlined" *appIfCurrentUser="user?.id ?? null" (click)="goToSettings()">
                     <mat-icon>settings</mat-icon>
                     Settings
                 </button>
