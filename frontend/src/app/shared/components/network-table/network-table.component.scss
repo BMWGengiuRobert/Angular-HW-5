@@ -1,0 +1,29 @@
+.table-container {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 1rem;
+    overflow: auto;
+
+    .name-and-avatar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+    }
+    
+
+    .mat-mdc-row {
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover {
+            background-color: var(--mat-sys-surface-container-high);
+            transform: scale(1.001);
+        }
+    }
+}
+
+h1 {
+    margin-left: 1rem
+}

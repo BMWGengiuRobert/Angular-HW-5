@@ -1,0 +1,15 @@
+<div class="header">
+    <div class="header__title">
+        <a routerLink="/network">LinkedOut</a>
+    </div>
+    <app-avatar [firstName]="user?.firstName || 'Gengiu'" [lastName]="user?.lastName || 'Robert'"></app-avatar>
+</div>
+<div class="header__actions">
+    <button class="hamburger-menu" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item class="settings-button" (click)="goToSettings()">
+            <mat-icon>settings</mat-icon>
+            Settings
+        </button>
+    </mat-menu>
+</div>

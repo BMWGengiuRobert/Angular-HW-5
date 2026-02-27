@@ -1,0 +1,51 @@
+<mat-card class="header-card">
+    <div class="header-card__banner"></div>
+
+    <mat-card-content class="header-card__content">
+        <div class="header-card__main">
+            <app-avatar
+                class="avatar-large"
+                [firstName]="user?.firstName ?? ''"
+                [lastName]="user?.lastName ?? ''">
+            </app-avatar>
+            <div class="basic-info">
+                <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
+                <p class="headline">{{ user?.headline }}</p>
+                <div class="meta">
+                    <mat-icon>location_on</mat-icon>
+                    {{ user?.location }}
+                </div>
+                <div class="meta connections">
+                    <mat-icon>group</mat-icon>
+                    <strong>{{ user?.connections }}</strong> connections
+                </div>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="contact-strip">
+            <div class="contact-item">
+                <mat-icon color="primary">email</mat-icon>
+                <span>{{ user?.email }}</span>
+            </div>
+            <div class="contact-item">
+                <span>{{ user?.phone }}</span>
+            </div>
+            <div class="contact-item">
+                <mat-icon color="primary">link</mat-icon>
+                <a [href]="user?.website">{{ user?.website }}</a>
+            </div>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>
+
+<app-profile-section title="About" [about]="user?.about" [dateOfBirth]="user?.dateOfBirth"></app-profile-section>
+
+<app-profile-section title="Experience" [experience]="user?.experience"></app-profile-section>
+
+<app-profile-section title="Education" [education]="user?.education"></app-profile-section>
+
+<app-profile-section title="Skills" [skills]="user?.skills"></app-profile-section>

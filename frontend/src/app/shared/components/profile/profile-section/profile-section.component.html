@@ -1,0 +1,51 @@
+<mat-card class="section-card">
+    <mat-card-header>
+        <mat-card-title>{{ title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        @if (about) {
+        <p class="about-text">{{ about }}</p>
+        }
+
+        @if (dateOfBirth) {
+        <p class="birth-text"> <mat-icon>cake</mat-icon> {{ dateOfBirth }}</p>
+        }
+
+        @if (experience?.length) {
+        @for (exp of experience!; track exp.company; let last = $last) {
+        <div class="section-item">
+            <div class="section-item__header">
+                <span class="section-item__title">{{ exp.title }}</span>
+                <span class="section-item__subtitle">{{ exp.company }} &middot; {{ exp.location }}</span>
+                <span class="section-item__date">{{ exp.startDate }} &ndash; {{ exp.endDate ?? 'Present' }}</span>
+            </div>
+            <p class="section-item__description">{{ exp.description }}</p>
+        </div>
+        @if (!last) { <mat-divider></mat-divider> }
+        }
+        }
+
+        @if (education?.length) {
+        @for (edu of education!; track edu.institution; let last = $last) {
+        <div class="section-item">
+            <div class="section-item__header">
+                <span class="section-item__title">{{ edu.institution }}</span>
+                <span class="section-item__subtitle">{{ edu.degree }} &middot; {{ edu.fieldOfStudy }}</span>
+                <span class="section-item__date">{{ edu.startYear }} &ndash; {{ edu.endYear ?? 'Present' }}</span>
+            </div>
+        </div>
+        @if (!last) { <mat-divider></mat-divider> }
+        }
+        }
+
+        @if (skills?.length) {
+        <mat-chip-set>
+            @for (skill of skills!; track skill) {
+            <mat-chip>{{ skill }}</mat-chip>
+            }
+        </mat-chip-set>
+        }
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,42 @@
+:host {
+  --header-side-padding: 10px;
+
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--mat-sys-surface-container-high);
+  height: var(--header-height);
+  padding: 0 var(--header-side-padding);
+
+  .header__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    a {
+      text-decoration: none;
+      color: var(--mat-sys-on-surface);
+      transition: color 0.2s ease-in-out;
+
+      &:hover{
+        color: var(--mat-sys-primary);
+      } 
+
+      &:active{
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.hamburger-menu {
+  mat-icon {
+    color: var(--mat-sys-on-surface);
+  }
+}
